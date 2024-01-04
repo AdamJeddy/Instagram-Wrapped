@@ -40,11 +40,20 @@ def main():
     your_instagram_name = 'Adam'
 
     # Loading the messages DataFrame and time it
+    global loading_complete
+    loading_complete = False
+
     start_time = time.time()
     print(Fore.GREEN + "Loading the messages DataFrame... " + Style.RESET_ALL, end="", flush=True)
 
+    loading_thread = threading.Thread(target=loading_animation)
+    loading_thread.start()
+
     messages_df = helper_function.load_messages(root_directory, columns_to_drop, users_to_drop)
 
+    loading_complete = True
+    loading_thread.join()
+    
     print(Fore.GREEN + "Done in " + f"{(time.time() - start_time):.2f}" + " secs!" + Style.RESET_ALL)
 
     """
