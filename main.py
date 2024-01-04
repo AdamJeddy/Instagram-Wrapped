@@ -48,12 +48,18 @@ def main():
 
     loading_thread = threading.Thread(target=loading_animation)
     loading_thread.start()
-
-    messages_df = helper_function.load_messages(root_directory, columns_to_drop, users_to_drop)
+    
+    try:
+        messages_df = helper_function.load_messages(root_directory, columns_to_drop, users_to_drop)
+    except Exception as e:
+        error_flag = True, e
 
     loading_complete = True
     loading_thread.join()
     
+    if error_flag[0]:
+        print(Fore.RED + "\nError loading the messages DataFrame: " + Style.RESET_ALL + str(error_flag[1]))
+        return
     print(Fore.GREEN + "Done in " + f"{(time.time() - start_time):.2f}" + " secs!" + Style.RESET_ALL)
 
     """
