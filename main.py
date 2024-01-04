@@ -1,6 +1,8 @@
 import os
 import json
 import re
+import threading
+import time
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,30 +13,41 @@ from pyfiglet import Figlet
 
 import helper_function
 
-
 plt.style.use('Solarize_Light2')
+
+def loading_animation():
+    animation = ['⣾', '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣽']
+    while not loading_complete:
+        for frame in animation:
+            print(Fore.CYAN + f"\r{frame}" + Style.RESET_ALL + "  Loading the messages DataFrame...  ", end="", flush=True)
+            time.sleep(0.1)
+
 
 def main():
     # Printing the title
     print( "\n" )
-    print(Fore.CYAN + "☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆." + Style.RESET_ALL)
+    print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆." + Style.RESET_ALL)
     print(Figlet().renderText('Instagram Wrapped'))
-    print(Fore.CYAN + "☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆." + Style.RESET_ALL)
+    print("☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆." + Style.RESET_ALL)
     print("\n")
     
     # Root directory where all user folders are located
     # Columns to drop and users to drop
     # User's Instagram name
-    root_directory = os.path.join(os.getcwd(), 'messages/Instagram-Wrapped/inbox')
+    root_directory = os.path.join(os.getcwd(), './inbox')
     columns_to_drop = ['call_duration', 'sticker', 'is_geoblocked_for_viewer']
     users_to_drop = []
     your_instagram_name = 'Adam'
 
-    
-    """
+    # Loading the messages DataFrame and time it
+    start_time = time.time()
+    print(Fore.GREEN + "Loading the messages DataFrame... " + Style.RESET_ALL, end="", flush=True)
+
     messages_df = helper_function.load_messages(root_directory, columns_to_drop, users_to_drop)
 
+    print(Fore.GREEN + "Done in " + f"{(time.time() - start_time):.2f}" + " secs!" + Style.RESET_ALL)
 
+    """
     ### ~~~~~~~~~~~ 2023 Review ~~~~~~~~ ###
     # New DataFrame for the year 2023
     messages_2023_df = messages_df[messages_df['year'] == 2023]
@@ -43,6 +56,8 @@ def main():
     message_count_by_user = messages_2023_df['sender_name'].value_counts()
     print(message_count_by_user[0:10])
     """
+    
+
     
 
 if __name__ == '__main__':
