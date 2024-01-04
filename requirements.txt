@@ -1,0 +1,12 @@
+# requirements.txt
+
+# Third-party libraries
+pandas==1.3.3
+numpy==1.21.2
+matplotlib==3.4.3
+emoji==1.6.0
+unidecode==1.2.0
+colorama==0.4.4
+
+# Additional dependencies
+nltk==3.6.3
