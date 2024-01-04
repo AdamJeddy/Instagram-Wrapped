@@ -13,8 +13,7 @@ import helper_function
 
 plt.style.use('Solarize_Light2')
 
-
-if __name__ == '__main__':
+def main():
     # Root directory where all user folders are located
     # Columns to drop and users to drop
     # User's Instagram name
@@ -34,3 +33,7 @@ if __name__ == '__main__':
     ## Number of messages sent by each user
     message_count_by_user = messages_2023_df['sender_name'].value_counts()
     print(message_count_by_user[0:10])
+    
+
+if __name__ == '__main__':
+    main()
