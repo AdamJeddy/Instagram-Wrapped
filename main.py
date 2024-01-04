@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from pprint import pprint
 import emoji
 from colorama import Fore, Style
+from pyfiglet import Figlet
 
 import helper_function
 
@@ -14,6 +15,13 @@ import helper_function
 plt.style.use('Solarize_Light2')
 
 def main():
+    # Printing the title
+    print( "\n" )
+    print(Fore.CYAN + "☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆." + Style.RESET_ALL)
+    print(Figlet().renderText('Instagram Wrapped'))
+    print(Fore.CYAN + "☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆.。.:*・°☆." + Style.RESET_ALL)
+    print("\n")
+    
     # Root directory where all user folders are located
     # Columns to drop and users to drop
     # User's Instagram name
@@ -22,7 +30,8 @@ def main():
     users_to_drop = []
     your_instagram_name = 'Adam'
 
-
+    
+    """
     messages_df = helper_function.load_messages(root_directory, columns_to_drop, users_to_drop)
 
 
@@ -33,6 +42,7 @@ def main():
     ## Number of messages sent by each user
     message_count_by_user = messages_2023_df['sender_name'].value_counts()
     print(message_count_by_user[0:10])
+    """
     
 
 if __name__ == '__main__':
