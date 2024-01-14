@@ -80,12 +80,17 @@ def load_messages(root_directory, columns_to_drop, users_to_drop):
     # Initialize an empty DataFrame to store all messages
     all_messages_df = pd.DataFrame()
 
+    # Counter for tracking the number of users
+    user_count = 0
+
     # Iterate through user folders
     for user_folder in os.listdir(root_directory):
         user_folder_path = os.path.join(root_directory, user_folder)
         
         # Check if the item in the directory is a folder
         if os.path.isdir(user_folder_path):
+            
+            user_count += 1
             
             # Iterate through JSON files in the user's folder
             for json_file in os.listdir(user_folder_path):
@@ -155,4 +160,4 @@ def load_messages(root_directory, columns_to_drop, users_to_drop):
     # Create a new column for word count
     all_messages_df['word_count'] = all_messages_df['content'].astype(str).apply(lambda x: len(x.split()))
 
-    return all_messages_df
+    return all_messages_df, user_count
