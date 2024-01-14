@@ -15,11 +15,13 @@ import helper_function
 
 plt.style.use('Solarize_Light2')
 
+messages_df = None
+
 def loading_animation():
     animation = ['⣾', '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣽']
     while not loading_complete:
         for frame in animation:
-            print(Fore.CYAN + f"\r{frame}" + Style.RESET_ALL + "  Loading the messages DataFrame...  ", end="", flush=True)
+            print(Fore.CYAN + f"\r{frame}" + Style.RESET_ALL + "  Loading the messages...  ", end="", flush=True)
             time.sleep(0.1)
 
 
