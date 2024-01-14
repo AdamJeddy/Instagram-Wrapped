@@ -51,8 +51,9 @@ def main():
     loading_thread = threading.Thread(target=loading_animation)
     loading_thread.start()
     
+    error_flag = False, None
     try:
-        messages_df = helper_function.load_messages(root_directory, columns_to_drop, users_to_drop)
+        messages_df, user_count = helper_function.load_messages(root_directory, columns_to_drop, users_to_drop)
     except Exception as e:
         error_flag = True, e
 
@@ -63,6 +64,7 @@ def main():
         print(Fore.RED + "\nError loading the messages DataFrame: " + Style.RESET_ALL + str(error_flag[1]))
         return
     print(Fore.GREEN + "Done in " + f"{(time.time() - start_time):.2f}" + " secs!" + Style.RESET_ALL)
+    print(Fore.GREEN + "Number of users: " + Style.RESET_ALL + str(user_count) + '\n\n')
 
     """
     ### ~~~~~~~~~~~ 2023 Review ~~~~~~~~ ###
@@ -73,7 +75,6 @@ def main():
     message_count_by_user = messages_2023_df['sender_name'].value_counts()
     print(message_count_by_user[0:10])
     """
-    
 
     
 
