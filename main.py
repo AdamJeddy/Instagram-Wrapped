@@ -12,6 +12,7 @@ from colorama import Fore, Style
 from pyfiglet import Figlet
 
 import helper_function
+import review
 
 plt.style.use('Solarize_Light2')
 
@@ -47,6 +48,7 @@ def main():
 
     start_time = time.time()
     print(Fore.GREEN + "Loading the messages DataFrame... " + Style.RESET_ALL, end="", flush=True)
+    print("")
 
     loading_thread = threading.Thread(target=loading_animation)
     loading_thread.start()
@@ -67,20 +69,65 @@ def main():
     print(Fore.GREEN + "\nNumber of users: " + Style.RESET_ALL + str(user_count))
 
     messages_df = messages_df
+    
+    # Give statistics about the data loaded such as how many rows (messages were loaded, etc)
 
     ### ~~~~~~~~~~~ 2023 Review ~~~~~~~~ ###
     # New DataFrame for the year 2023
-    messages_2023_df = messages_df[messages_df['year'] == 2023]
+    # messages_2023_df = messages_df[messages_df['year'] == 2023]
 
     ## Number of messages sent by each user
-    message_count_by_user = messages_2023_df['sender_name'].value_counts()
+    # message_count_by_user = messages_2023_df['sender_name'].value_counts()
     
-    print(Fore.GREEN + "\nNumber of messages sent by each user in 2023: " + Style.RESET_ALL)
-    print(message_count_by_user[0:10])
+    # print(Fore.GREEN + "\nNumber of messages sent by each user in 2023: " + Style.RESET_ALL)
+    # print(message_count_by_user[0:10])
     
     """
     """
+    review_menu(messages_df)
 
+def review_menu(messages_df):
+    # Ask if this is the user
+    # users_name = messages_df['sender_name'].value_counts()[0:1].index[0]
+    # print(Fore.GREEN + "\nIs this you? " + Style.RESET_ALL + users_name)
+    
+    # user_input = input(Fore.GREEN + "\nAre you " + Style.RESET_ALL + users_name + Fore.GREEN + "? "+ Style.RESET_ALL )
+
+    # if user_input == "yes":
+    #     print("Thank you!")
+    # else:
+    #     print("Well this is awkward...")
+
+    
+    while (True):
+        print(Fore.GREEN + "\nReview Menu" + Style.RESET_ALL)
+        print(Fore.CYAN + "\t1. Review this year" + Style.RESET_ALL)
+        print(Fore.BLUE + "\t2. Review previous year" + Style.RESET_ALL)
+        print(Fore.YELLOW + "\t3. Total Review" + Style.RESET_ALL)
+        print(Fore.RED + "\t4. Quit" + Style.RESET_ALL)
+        print("\n")
+
+        user_input = input(Fore.GREEN + "Enter your choice: " + Style.RESET_ALL)
+
+        match user_input:
+            case "1":
+                # review_this_year()
+                pass
+            case "2":
+                # review_previous_year()
+                pass
+            case "3":
+                # total_review()
+                review.analyze_messages(messages_df)
+                pass
+            case "4":
+                break
+            case _:
+                print(Fore.RED + "Invalid input!" + Style.RESET_ALL)
+                continue
+    
+    
+    print(Fore.GREEN + "Thank you!" + Style.RESET_ALL)
 
     
 
