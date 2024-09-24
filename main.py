@@ -64,17 +64,23 @@ def main():
         print(Fore.RED + "\nError loading the messages DataFrame: " + Style.RESET_ALL + str(error_flag[1]))
         return
     print(Fore.GREEN + "Done in " + f"{(time.time() - start_time):.2f}" + " secs!" + Style.RESET_ALL)
-    print(Fore.GREEN + "Number of users: " + Style.RESET_ALL + str(user_count) + '\n\n')
+    print(Fore.GREEN + "\nNumber of users: " + Style.RESET_ALL + str(user_count))
 
-    """
+    messages_df = messages_df
+
     ### ~~~~~~~~~~~ 2023 Review ~~~~~~~~ ###
     # New DataFrame for the year 2023
     messages_2023_df = messages_df[messages_df['year'] == 2023]
 
     ## Number of messages sent by each user
     message_count_by_user = messages_2023_df['sender_name'].value_counts()
+    
+    print(Fore.GREEN + "\nNumber of messages sent by each user in 2023: " + Style.RESET_ALL)
     print(message_count_by_user[0:10])
+    
     """
+    """
+
 
     
 
