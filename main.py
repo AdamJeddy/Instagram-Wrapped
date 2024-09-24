@@ -21,7 +21,7 @@ def loading_animation():
     animation = ['⣾', '⣷', '⣯', '⣟', '⡿', '⢿', '⣻', '⣽']
     while not loading_complete:
         for frame in animation:
-            print(Fore.CYAN + f"\r{frame}" + Style.RESET_ALL + "  Loading the messages...  ", end="", flush=True)
+            print(Fore.CYAN + f"\r{frame}" + Style.RESET_ALL + "  Loading the messages... " + Style.RESET_ALL, end="", flush=True)
             time.sleep(0.1)
 
 
