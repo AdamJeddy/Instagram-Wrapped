@@ -9,7 +9,7 @@ unidecode==1.2.0
 colorama==0.4.4
 
 # Additional dependencies
-nltk==3.10.3
+nltk==3.10.4
 wordcloud
 textblob
 tabulate
